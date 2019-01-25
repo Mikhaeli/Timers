@@ -1,0 +1,17 @@
+table {
+      float: none;
+    margin: 0 auto;
+}
+
+.toggle {
+  cursor: pointer;
+}
+
+#startstop {
+  float: none;
+  margin: 0 auto;
+}
+
+#startStop {
+  width: 100%;
+}
