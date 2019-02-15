@@ -6,4 +6,4 @@ app = Flask(__name__)
 @app.route('/')
 def hello_world():
     #return render_template("index.html")
-    return "Hello world"
+    return "<h1>Hello world<h1>"
