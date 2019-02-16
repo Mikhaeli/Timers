@@ -63,7 +63,7 @@ $(document).ready(function() {
   //all pre-existing timer names and values
   var clocks = [
     new timerObj("Hour", 1, 0, 0),
-    new timerObj("20 mins", 20, 0, 0)
+    new timerObj("20 mins", 0, 20, 0)
   ];
 
   //function to add timer html
@@ -95,7 +95,7 @@ $(document).ready(function() {
   });
 
   //add timer
-  /*
+
   $("#addTimer").click(function() {
     //TODO
     //ajax send to server
@@ -105,22 +105,20 @@ $(document).ready(function() {
     //test for doubles
     //Credit to
     //https://stackoverflow.com/questions/8217419/how-to-determine-if-javascript-array-contains-an-object-with-an-attribute-that-e
-    var nameIsFree = clocks.filter(function(timer) {
-      return timer.name === $("#timerName").val()
-    }.length;
+    var nameIsTaken = clocks.filter(timer => timer.name === $("#timerName").val()).length;
 
-    if (nameIsFree)
+    if (nameIsTaken)
+    {
+      //alert user name is used
+    }
+    else
     {
       var newTimer = new timerObj($("#timerName").val(), parseInt($("#timeInput").val()), 0, 0)
       clocks.push(newTimer);
       addTimerRow(newTimer);
     }
-    else
-    {
-      //alert user name is used
-    }
   });
-*/
+
   function tick() {
     for (var x in clocks) {
       if (clocks[x].switch == "on") {
