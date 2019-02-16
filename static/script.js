@@ -5,13 +5,14 @@ $(document).ready(function() {
     return (time < 10 ? "0" : "") + time;
   }
 
-  function timerObj(name, hours, mins, secs) {
+  function timerObj(name, hours, mins, secs, sound) {
     //name should be a string
     //other arguments accept only ints
     this.setTime = {
       hours: hours,
       mins: mins,
-      secs: secs
+      secs: secs,
+      sound: sound
     };
 
     this.name = name;
@@ -41,6 +42,13 @@ $(document).ready(function() {
 
     this.resetTime = function() {
       this.remainingTime = JSON.parse(JSON.stringify(this.setTime));
+
+      //credit to
+      //https://stackoverflow.com/questions/9419263/playing-audio-with-javascript
+      if (this.sound) {
+        var audio = new Audio(this.sound);
+        audio.play();
+      }
     };
 
     this.resetTime();
