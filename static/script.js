@@ -40,9 +40,6 @@ $(document).ready(function() {
     };
 
     this.resetTime = function() {
-      //this.remainingTime = {...this.setTIme};
-      //this.remainingTime = Object.assign({}, this.setTIme);
-      //Object.assign(this.remainingTime, this.setTime);
       this.remainingTime = JSON.parse(JSON.stringify(this.setTime));
     };
 
@@ -63,7 +60,7 @@ $(document).ready(function() {
     };
   }
 
-  //all timer names and values
+  //all pre-existing timer names and values
   var clocks = [
     new timerObj("Hour", 1, 0, 0),
     new timerObj("20 mins", 20, 0, 0)
@@ -100,11 +97,27 @@ $(document).ready(function() {
   //add timer
   $("#addTimer").click(function() {
     //TODO
+    //ajax send to server
     //input validation
+    //parse timer entry better, include seconds and minutes
+
     //test for doubles
-    var newTimer = new timerObj($("#timerName").val(), parseInt($("#timeInput").val()), 0, 0)
-    clocks.push(newTimer);
-    addTimerRow(newTimer);
+    //Credit to
+    //https://stackoverflow.com/questions/8217419/how-to-determine-if-javascript-array-contains-an-object-with-an-attribute-that-e
+    var nameIsUsed = clocks.filter(function(timer) {
+      return timer.name === $("#timerName").val()
+    }.length;
+
+    if (nameIsUsed)
+    {
+      //alert user name is used
+    }
+    else
+    {
+      var newTimer = new timerObj($("#timerName").val(), parseInt($("#timeInput").val()), 0, 0)
+      clocks.push(newTimer);
+      addTimerRow(newTimer);
+    }
   });
 
   function tick() {
@@ -113,10 +126,8 @@ $(document).ready(function() {
         if (clocks[x].isZero()) {
           clocks[x].resetTime();
           //console.log(clocks[x].setTime);
-
         } else {
           clocks[x].decrement();
-
         }
         $("#" + clocks[x].name + "disp").html(clocks[x].asStr());
       }
