@@ -1,8 +1,5 @@
 venv
 __pycache__
 run_server.bat
-static
-templates
 .gitignore
-README.txt
 set

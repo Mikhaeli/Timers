@@ -12,5 +12,3 @@ python -m flask run
 
 
 //for this file
-hidden-eyrie-60934
-https://hidden-eyrie-60934.herokuapp.com/ | https://git.heroku.com/hidden-eyrie-60934.git
