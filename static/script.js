@@ -1,10 +1,13 @@
 $(document).ready(function() {
   console.log("Howdy js is working");
+
   function formatTime(time) {
     return (time < 10 ? "0" : "") + time;
   }
+
   function timerObj(name, hours, mins, secs) {
-    //function should accept only ints
+    //name should be a string
+    //other arguments accept only ints
     this.setTime = {
       hours: hours,
       mins: mins,
@@ -23,6 +26,7 @@ $(document).ready(function() {
         formatTime(this.remainingTime.secs)
       );
     };
+
     this.asInt = function() {
       return (
         this.remainingTime.hours +
@@ -30,9 +34,11 @@ $(document).ready(function() {
         this.remainingTime.secs
       );
     };
+
     this.isZero = function() {
       return this.asInt() == 0;
     };
+
     this.resetTime = function() {
       //this.remainingTime = {...this.setTIme};
       //this.remainingTime = Object.assign({}, this.setTIme);
@@ -59,9 +65,8 @@ $(document).ready(function() {
 
   //all timer names and values
   var clocks = [
-    new timerObj("hour", 1, 0, 2),
-    new timerObj("20mins", 15, 20, 4),
-    new timerObj("houre", 0, 0, 4),
+    new timerObj("Hour", 1, 0, 0),
+    new timerObj("20 mins", 20, 0, 0)
   ];
 
   //function to add timer html
@@ -75,7 +80,7 @@ $(document).ready(function() {
     );
   }
 
-  //generate html table with values in clocks
+  //Add pre-existing clock values to clocks
   for (var x in clocks) {
     addTimerRow(clocks[x]);
   }
@@ -97,13 +102,9 @@ $(document).ready(function() {
     //TODO
     //input validation
     //test for doubles
-    console.log("Yeet");
-    clocks.push({
-      name: $("#timerName").val(),
-      time: parseInt($("#timeInput").val()),
-      switch: "on"
-    });
-    addTimerRow(clocks.length - 1);
+    var newTimer = new timerObj($("#timerName").val(), parseInt($("#timeInput").val()), 0, 0)
+    clocks.push(newTimer);
+    addTimerRow(newTimer);
   });
 
   function tick() {
