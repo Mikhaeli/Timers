@@ -1,4 +1,5 @@
 $(document).ready(function() {
+  console.log("Howdy js is working");
   function formatTime(time) {
     return (time < 10 ? "0" : "") + time;
   }
